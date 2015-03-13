@@ -93,8 +93,8 @@ Format}
 %
 % 1st. author
 \alignauthor
-First Author (Only one author for SRC)\\
-       \affaddr{1st author's affiliation}\\
+Theresa Guinard\\
+       \affaddr{New Mexico Institute of Mining and Technology}\\
        \affaddr{1st line of address}\\
        \affaddr{2nd line of address}\\
        \affaddr{telephone number, incl. country code}
@@ -156,17 +156,28 @@ In the introduction section, you should describe the open problem and motivation
 
 \section{Background and Related Work}
 
-Describe specialized and relevant related background necessary to appreciate the work.  Include references to the literature where appropriate, and briefly explain where your work departs from that done by others.  Reference lists do not count towards the limit on the length of the abstract.
-This is an example of a citation~\cite{Lamport:LaTeX}.
+In order to perform sentiment analysis, two approaches were taken: using SentiWordNet scores and SVM machine learning based on ratings.
+
+SVM use in sentiment analysis has proven to be more effective than other forms of machine learning [citation needed].  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech.  To normalize the input, term frequency–inverse document frequency (tfidf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposistion, can be used.
+
+SentiWordNet is a dataset that assigns a sentiment score to members of WordNet.  Sentiment scores were generated using the structure of WordNet as well as the Princeton WordNet Gloss Corpus.
+
+%Describe specialized and relevant related background necessary to appreciate the work.  Include references to the literature where appropriate, and briefly explain where your work departs from that done by others.  Reference lists do not count towards the limit on the length of the abstract.
+%This is an example of a citation~\cite{Lamport:LaTeX}.
 
 \section{Approach and Uniqueness}
-Describe your approach in attacking the problem and how your approach is novel.  Your hypothesis may be here.
+%Describe your approach in attacking the problem and how your approach is novel.  Your hypothesis may be here.
 
-\subsection{Example subsection: Approach}
-Describe your approach in attacking the problem and how your approach is novel.  Your hypothesis may be here.
+\subsection{Sentiment Analysis}
 
-\subsection{Example subsection: Evaluation}
-To evaluate my approach to the problem, I designed the following experiment that answers the following research questions/evaluates my hypothesis.
+One implemented sentiment analysis approach involved using SentiWordNet.  Part of speech tagging was performed on each review, and the sum of SentiWordNet scores for adverbs, verbs, and adjectives was taken to determine whether the review was positive, negative, or neutral overall.  Each review was assigned a sentiment score of 1, -1, or 0 (positive, negative, or neutral), and each app received a sentiment score which was calculated by the proportion of positive to negative reviews.
+
+Results were compared to another approach to sentiment analysis: using a support vector machine (SVM) trained using the ratings of a subset of the comments.  To transform the reviews into SVM input, the adjectives, adverbs, and verbs were considered (these were determined using part of speech tagging).  These words were lemmatized using WordNet, the comments were normalized via tf-idf, and to reduce the dimensionality of input, LSA was used.  A sample of one-star and five-star comments was taken from the corpus of reviews to train the SVM.
+
+The advantage of the SVM approach is that it potentially handles domain-specific factors better, but it is also potentially non-extensible to applications outside of the training set.  However, in this project, comments for the training set were taken from all applications, and the purpose of performing semantic analysis was primarily to classify the sentiments of the more neutrally-rate comments (2-4 stars).
+
+%\subsection{Example subsection: Evaluation}
+%To evaluate my approach to the problem, I designed the following experiment that answers the following research questions/evaluates my hypothesis.
 
 \section{Results and Contributions}
 
@@ -174,27 +185,36 @@ Describe how the results of your work contribute to computer science and the sig
 
 \subsection{Results}
 
-Provide an overview of results.  Use tables or figures as appropriate.  Place Tables/Figures/Images in text as close to the reference as possible, typically at the top of a column (see Figure~\ref{fig:myfig}).  
+
+%Provide an overview of results.  Use tables or figures as appropriate.  Place Tables/Figures/Images in text as close to the reference as possible, typically at the top of a column (see Figure~\ref{fig:myfig}).
 
 \begin{figure}
 \centering
-\epsfig{file=process}
-\caption{A sample black and white graphic (.pdf format).}
-\label{fig:myfig}
+\includegraphics[scale=0.4]{svm.png}
+%\epsfig{file=svm}
+\caption{SVM sentiment scores vs. average star ratings}
+\label{fig:myfig1}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{swn.png}
+%\epsfig{file=swn}
+\caption{SentiWordNet sentiment scores vs. average star ratings}
+\label{fig:myfig2}
+\end{figure}
 Captions should be numbered (e.g., ``Table 1'' or ``Figure 2''), please note that the word for Table and Figure are spelled out. Figures' captions should be centered beneath the image or picture, and Table captions should be centered above the table body.
 
-\begin{table}
-\centering
-\caption{Table captions should be placed above the table.}
-\begin{tabular}{|c|c|c|c|} 
-\hline
-\textbf{Graphics} & \textbf{Top} & \textbf{In-between} & \textbf{Bottom} \\ \hline
-Tables & End & Last & First \\ \hline
-Figures & Good & Similar & Very well \\ \hline
-\end{tabular}
-\end{table}
+%\begin{table}
+%\centering
+%\caption{Table captions should be placed above the table.}
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%\textbf{Graphics} & \textbf{Top} & \textbf{In-between} & \textbf{Bottom} \\ \hline
+%Tables & End & Last & First \\ \hline
+%Figures & Good & Similar & Very well \\ \hline
+%\end{tabular}
+%\end{table}
 
 
 \subsection{Contributions}
@@ -202,8 +222,8 @@ Figures & Good & Similar & Very well \\ \hline
 The contributions of my work are:
 
 \begin{itemize}
-\item{Contribution 1.}
-\item{Contribution 2.}
+\item{}
+\item{}
 \end{itemize}
 
 % The following two commands are all you need in the
