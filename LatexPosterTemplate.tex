@@ -49,7 +49,7 @@
 
 \begin{document}
 
-\title{My Beautiful Dark Twisted Title}
+\title{An Evaluation of Potential Reputation System Metrics for Android Applications and Application Developers}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -163,7 +163,7 @@ difficult for users to sift through reviews in order to determine how other user
 \section{Background and Related Work}
 In order to perform sentiment analysis, two approaches were taken: using SentiWordNet scores, and a support vector machine trained with star ratings.
 
-Support Vector Machine (SVM) use in sentiment analysis has proven to be an effective approach to sentiment analysis, in comparison with other machine learning techniques \cite{Pang02thumbsup}.  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech \cite{Miller}.  To normalize the input, term frequency-inverse document frequency (tf-idf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposistion, can be used \cite{Deerwester90indexingby}.  This follows a simiar approach as \cite{Mullen04sentimentanalysis}
+Support Vector Machine (SVM) use in sentiment analysis has proven to be an effective approach to sentiment analysis, in comparison with other machine learning techniques \cite{Pang02thumbsup}.  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech \cite{Miller}.  To normalize the input, term frequency-inverse document frequency (tf-idf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposition, can be used \cite{Deerwester90indexingby}.  This follows a similar approach as \cite{Mullen04sentimentanalysis}.
 
 SentiWordNet is a dataset that assigns a sentiment score to members of WordNet.  Sentiment scores were generated using the structure of WordNet as well as the Princeton WordNet Gloss Corpus \cite{Baccianella10sentiwordnet}.
 
@@ -175,31 +175,23 @@ The inspiration for using Natural Language Processing for sentiment analyis came
 \subsection{Data Collection}
 Over 500 applications were collected from the Google Play Store. In the first phase of data collection, online lists of Top 100 Free and Paid apps were scraped and application data was collected. From there, we were able to create a list of developers from the applications already collected. In phase two, we iterated through the list of developers, collecting every application that the developers had written. The results of phases 1 and 2 were combined to form the final data set  
 \subsection{Sentiment Analysis}
-One implemented sentiment analysis approach involved using SentiWordNet.  Part of speech tagging was performed on each review. The sum of SentiWordNet scores for adverbs, verbs, and adjectives was taken to determine whether the review was positive, negative, or neutral overall.  Each review was assigned a sentiment score of 1, -1, or 0 (positive, negative, or neutral), and each app received a sentiment score which was calculated by the proportion of positive to negative reviews.
+The first implemented approach to sentiment analysis was done using SentiWordNet.  Part of speech tagging was performed on each review. Then the sum of SentiWordNet scores for adverbs, verbs, and adjectives was taken to determine whether the review was positive, negative, or neutral overall.  Each review was assigned a sentiment score of 1, -1, or 0 (positive, negative, or neutral), and each app received a sentiment score which was calculated by the proportion of positive to negative reviews.
 
 Results were compared to another approach to sentiment analysis: using a support vector machine (SVM) trained using the ratings of a subset of the comments.  To transform the reviews into SVM input, the adjectives, adverbs, and verbs were considered (these were determined using part of speech tagging).  These words were lemmatized using WordNet, the comments were normalized via tf-idf, and to reduce the dimensionality of input, LSA was used.  A sample of one-star and five-star comments was taken from the corpus of reviews to train the SVM.
 
-The advantage of the SVM approach is that it potentially handles domain-specific factors better, but it is also potentially non-extensible to comments of applications outside of the training set.  However, in this project, comments for the training set were taken from all applications, and the purpose of performing semantic analysis was primarily to classify the sentiments of the more neutrally-rate comments (2-4 stars).
+The advantage of the SVM approach is that it potentially handles domain-specific factors better, but it is also potentially non-extensible to comments of applications outside of the training set.  However, in this project, comments for the training set were taken from all applications, and the purpose of performing semantic analysis was primarily to classify the sentiments of the more neutrally-rated comments (2-4 stars).
 
 
 \subsection{Application Metric Comparison}
-Several metrics dealing with application quality are directly available from Google Play.  This includes approximate number of downloads, average 1-5 star rating, and whether the developer is a Top Developer.  In order to determine which metrics are useful in a rating system, these different metrics are compared across the top-downloaded applications, and we determine if there is any correlation.
+Several metrics dealing with application quality are directly available from Google Play.  This includes approximate number of downloads, average 1-5 star rating, and whether the developer is a Top Developer.  In order to determine which metrics are useful in a rating system, these different metrics are compared across the top-downloaded applications, and analyzed to determine if there is any correlation.
 
 \section{Results and Application}\label{results}
 There are many potential applications for the calculated sentiment score and other available metrics. One particularly interesting application is developer rating: using the aggregate sentiment scores of the applications created by a developer, we can generate a generalized ``reputation'' score that will attempt to measure the reliability of the developer.
+This reputation score will provide much needed information about developer reliability which can be a dramatic improvement over the existing information. To elaborate, the Google Play store designates certain developers as ``Top Developers'' which is indicated via badges. However, being a ``Top Developer'' does not indicate that the developer has written a large number of apps or even that the apps are of good quality. The generalized reputation score will provide users with a more precise measurement of developer reliabilty.
 
- This reputation score will provide much needed information about developer reliability which can be a dramatic improvement over the existing information. To elaborate, the Google Play store designates certain developers as ``Top Developers'' which is indicated via badges. However, being a ``Top Developer'' does not indicate that the developer has written a large number of apps or even that the apps are of good quality. The generalized reputation score will provide users with a more precise measurement of developer reliabilty
-
-%\begin{figure}[!h]
-%\centering
-%\epsfig{file=piggy.png,width=0.5\textwidth}
-%\caption{An example of a mediocre app from a Top Developer.}
-%\label{fig:myfig}
-%\end{figure} 
 
 \subsection{Results}
-%Provide an overview of results.  Use tables or figures as appropriate.  Place Tables/Figures/Images in text as close to the reference as possible, typically at the top of a column (see Figure~\ref{fig:myfig}).
-For the sentiment analysis score, the SentiWordNet technique correlates with overall app rating more than the SVM technique does.  For predicting the sentiment of one-star and five-star comments, the SVM technique is more accurate.
+For the sentiment analysis score, the SentiWordNet technique correlates with overall app rating more than the SVM technique.  For predicting the sentiment of one-star and five-star comments, the SVM technique is more accurate.
 
 \begin{figure}[!h]
 \centering
@@ -226,7 +218,7 @@ SentiWordNet & 0.709 \\ \hline
 \end{tabular}
 \end{table}
 
-In addition to the above single application analysis. We explored the application listed in \ref{results} by comparing the average SentiWordNet score
+In addition to individual application application analysis, we explored the application listed in Section \ref{results} by comparing the average SentiWordNet score
 of top developers to other developers. Figure \ref{fig:myfig3} shows the results of the comparison.
 \begin{figure}[!h]
 \centering
@@ -239,7 +231,7 @@ of top developers to other developers. Figure \ref{fig:myfig3} shows the results
 This work contributes to the study of reputation systems by taking a critical look at the quality of various metrics.
 \begin{itemize}
 \item{We have compared existing sentiment analysis techniques, and evaluated their effectiveness for predicting the aggregate sentiment of an application from multiple reviews.}
-\item{We have investigated corrrelations between multiple metrics that determine the quality of an application, which can be used to determine the overall quality of an application of an application developer.}
+\item{We have investigated correlations between multiple metrics that determine the quality of an application, which can be used to determine the overall quality of an application of an application developer.}
 \end{itemize}
 
 % The following two commands are all you need in the
