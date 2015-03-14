@@ -49,8 +49,7 @@
 
 \begin{document}
 
-\title{My Fantastic Poster Title, based on {\ttlit ACM} SIG Proceedings Paper in LaTeX
-Format}
+\title{}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -95,18 +94,26 @@ Format}
 \alignauthor
 Theresa Guinard\\
        \affaddr{New Mexico Institute of Mining and Technology}\\
-       \affaddr{1st line of address}\\
-       \affaddr{2nd line of address}\\
-       \affaddr{telephone number, incl. country code}
-       \email{Email address}
+       \affaddr{801 Leroy Place}\\
+       \affaddr{Socorro, New Mexico}\
+       \affaddr{1-(575)-835-5434}
+       \email{tguinard@cs.nmt.edu}
 % 2nd. author
 \alignauthor
-Second Author\\
-       \affaddr{2nd author's affiliation}\\
-       \affaddr{1st line of address}\\
-       \affaddr{2nd line of address}\\
-       \affaddr{telephone number, incl. country code}
-       \email{Email address}
+Randall Van Why\\
+       \affaddr{New Mexico Institute of Mining and Technology}\\
+       \affaddr{801 Leroy Place}\\
+       \affaddr{Socorro, New Mexico, 87801}\\
+       \affaddr{1-(575)-835-5434}
+       \email{rvanwhy@cs.nmt.edu}
+% 3rd. author
+\and
+\alignauthor
+Dr. Jun Zheng\\
+       \affaddr{New Mexico Institute of Mining and Technology}\\
+       \affaddr{801 Leroy Place}\\
+       \affaddr{Socorro, New Mexico, 87801}\\
+       \email{zheng@cs.nmt.edu}
 % 3rd. author
 %\alignauthor Lars Th{\o}rv{\"a}ld\titlenote{This author is the
 %one who did all the really hard work.}\\
@@ -149,16 +156,14 @@ Second Author\\
 \maketitle
 
 \section{Introduction}
-You are limited to a two-page abstract that describes your work plus one page for references only.  Your submission should tell the poster committee about your work and give us an idea of the content that will be on the poster you present at the conference.
-
-The organization and text provided in this template is meant as a guide only.  For your work, the suggested text may belong in a different section.  Your may organize sections differently, but make sure that you clearly address each required component of the extended abstract.
-In the introduction section, you should describe the open problem and motivation for solving the problem in sufficient details.   State the research question(s) you want to answer.
+The current rating system for applications is antiquated. As more people adopt smartphones as their choice of mobile technology, it becomes increasingly
+difficult for users to sift through reviews in order to determine how other users feel about a mobile application. In addition, the 5-star rating systems used in many modern markets are too coarse to describe accurate sentiment. Our goal is to develop a system that uses existing mobile application data in order to provide users with a better understanding of the reception of an app. 
 
 \section{Background and Related Work}
 
 In order to perform sentiment analysis, two approaches were taken: using SentiWordNet scores and SVM machine learning based on ratings.
 
-SVM use in sentiment analysis has proven to be more effective than other forms of machine learning [citation needed].  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech.  To normalize the input, term frequency–inverse document frequency (tf-idf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposition, can be used.
+SVM use in sentiment analysis has proven to be more effective than other forms of machine learning [citation needed].  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech.  To normalize the input, term frequency--inverse document frequency (tf-idf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposistion, can be used.
 
 SentiWordNet is a dataset that assigns a sentiment score to members of WordNet.  Sentiment scores were generated using the structure of WordNet as well as the Princeton WordNet Gloss Corpus.
 
@@ -169,26 +174,28 @@ SentiWordNet is a dataset that assigns a sentiment score to members of WordNet. 
 %Describe your approach in attacking the problem and how your approach is novel.  Your hypothesis may be here.
 
 \subsection{Sentiment Analysis}
-
-One implemented sentiment analysis approach involved using SentiWordNet.  Part of speech tagging was performed on each review, and the sum of SentiWordNet scores for adverbs, verbs, and adjectives was taken to determine whether the review was positive, negative, or neutral overall.  Each review was assigned a sentiment score of 1, -1, or 0 (positive, negative, or neutral), and each app received a sentiment score which was calculated by the proportion of positive to negative reviews.
+One implemented sentiment analysis approach involved using SentiWordNet.  Part of speech tagging was performed on each review. The sum of SentiWordNet scores for adverbs, verbs, and adjectives was taken to determine whether the review was positive, negative, or neutral overall.  Each review was assigned a sentiment score of 1, -1, or 0 (positive, negative, or neutral), and each app received a sentiment score which was calculated by the proportion of positive to negative reviews.
 
 Results were compared to another approach to sentiment analysis: using a support vector machine (SVM) trained using the ratings of a subset of the comments.  To transform the reviews into SVM input, the adjectives, adverbs, and verbs were considered (these were determined using part of speech tagging).  These words were lemmatized using WordNet, the comments were normalized via tf-idf, and to reduce the dimensionality of input, LSA was used.  A sample of one-star and five-star comments was taken from the corpus of reviews to train the SVM.
 
 The advantage of the SVM approach is that it potentially handles domain-specific factors better, but it is also potentially non-extensible to applications outside of the training set.  However, in this project, comments for the training set were taken from all applications, and the purpose of performing semantic analysis was primarily to classify the sentiments of the more neutrally-rate comments (2-4 stars).
 
-%\subsection{Example subsection: Evaluation}
-%To evaluate my approach to the problem, I designed the following experiment that answers the following research questions/evaluates my hypothesis.
+\section{Results and Application}
+There are many potential applications for this calculated sentiment score. One particularly interesting applicaton is developer rating: using the aggregate sentiment scores of the applications created by a developer, we can generate a generalized ``reputation'' score that will attempt to measure the reliability of the developer.
 
-\section{Results and Contributions}
-
-Describe how the results of your work contribute to computer science and the significance of those results.
+ This reputation score will provide much needed information about developer reliability which can be a dramatic improvement over the existing information. To elaborate, the Google Play store designates certain developers as ``Top Developers'' which is indicated via badges. However, being a ``Top Developer'' does not indicate that the developer has written a large number of apps or even that the apps are of good quality.
+\pagebreak
+\begin{figure}[!h]
+\centering
+\epsfig{file=piggy.png,width=0.5\textwidth}
+\caption{An example of a mediocre app from a Top Developer.}
+\label{fig:myfig}
+\end{figure} 
 
 \subsection{Results}
-
-
 %Provide an overview of results.  Use tables or figures as appropriate.  Place Tables/Figures/Images in text as close to the reference as possible, typically at the top of a column (see Figure~\ref{fig:myfig}).
 
-\begin{figure}
+\begin{figure}[!h]
 \centering
 \includegraphics[scale=0.4]{svm.png}
 %\epsfig{file=svm}
@@ -196,35 +203,16 @@ Describe how the results of your work contribute to computer science and the sig
 \label{fig:myfig1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!h]
 \centering
 \includegraphics[scale=0.4]{swn.png}
 %\epsfig{file=swn}
 \caption{SentiWordNet sentiment scores vs. average star ratings}
 \label{fig:myfig2}
 \end{figure}
-Captions should be numbered (e.g., ``Table 1'' or ``Figure 2''), please note that the word for Table and Figure are spelled out. Figures' captions should be centered beneath the image or picture, and Table captions should be centered above the table body.
-
-%\begin{table}
-%\centering
-%\caption{Table captions should be placed above the table.}
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%\textbf{Graphics} & \textbf{Top} & \textbf{In-between} & \textbf{Bottom} \\ \hline
-%Tables & End & Last & First \\ \hline
-%Figures & Good & Similar & Very well \\ \hline
-%\end{tabular}
-%\end{table}
 
 
 \subsection{Contributions}
-
-The contributions of my work are:
-
-\begin{itemize}
-\item{}
-\item{}
-\end{itemize}
 
 % The following two commands are all you need in the
 % initial runs of your .tex file to
