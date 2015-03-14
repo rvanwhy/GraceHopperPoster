@@ -163,13 +163,11 @@ difficult for users to sift through reviews in order to determine how other user
 \section{Background and Related Work}
 In order to perform sentiment analysis, two approaches were taken: using SentiWordNet scores, and a support vector machine trained with star ratings.
 
-Support Vector Machine (SVM) use in sentiment analysis has proven to be an effective approach to sentiment analysis, in comparison with other machine learning techniques \cite{Pang02thumbsup}.  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech \cite{Miller}.  To normalize the input, term frequency-inverse document frequency (tf-idf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposition, can be used \cite{Deerwester90indexingby}.  This follows a similar approach as \cite{Mullen04sentimentanalysis}.
+Support vector machine (SVM) use in sentiment analysis has proven to be an effective approach to sentiment analysis, in comparison with other machine learning techniques \cite{Pang02thumbsup}.  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech \cite{Miller}.  To normalize the input, term frequency-inverse document frequency (tf-idf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposition, can be used \cite{Deerwester90indexingby}.  This follows a similar approach as \cite{Mullen04sentimentanalysis}.
 
 SentiWordNet is a dataset that assigns a sentiment score to members of WordNet.  Sentiment scores were generated using the structure of WordNet as well as the Princeton WordNet Gloss Corpus \cite{Baccianella10sentiwordnet}.
 
 The inspiration for using Natural Language Processing for sentiment analyis came from \cite{Pandita:2013:WTA:2534766.2534812}. The group found the approach interesting and worth exploring as an avenue of sentiment analysis.
-%Describe specialized and relevant related background necessary to appreciate the work.  Include references to the literature where appropriate, and briefly explain where your work departs from that done by others.  Reference lists do not count towards the limit on the length of the abstract.
-%This is an example of a citation~\cite{Lamport:LaTeX}.
 
 \section{Approach and Uniqueness}
 \subsection{Data Collection}
@@ -177,7 +175,7 @@ Over 500 applications were collected from the Google Play Store. In the first ph
 \subsection{Sentiment Analysis}
 The first implemented approach to sentiment analysis was done using SentiWordNet.  Part of speech tagging was performed on each review. Then the sum of SentiWordNet scores for adverbs, verbs, and adjectives was taken to determine whether the review was positive, negative, or neutral overall.  Each review was assigned a sentiment score of 1, -1, or 0 (positive, negative, or neutral), and each app received a sentiment score which was calculated by the proportion of positive to negative reviews.
 
-Results were compared to another approach to sentiment analysis: using a support vector machine (SVM) trained using the ratings of a subset of the comments.  To transform the reviews into SVM input, the adjectives, adverbs, and verbs were considered (these were determined using part of speech tagging).  These words were lemmatized using WordNet, the comments were normalized via tf-idf, and to reduce the dimensionality of input, LSA was used.  A sample of one-star and five-star comments was taken from the corpus of reviews to train the SVM.
+Results were compared to another approach to sentiment analysis: using an SVM trained using the ratings of a subset of the comments.  To transform the reviews into SVM input, the adjectives, adverbs, and verbs were considered (these were determined using part of speech tagging).  These words were lemmatized using WordNet, the comments were normalized via tf-idf, and to reduce the dimensionality of input, LSA was used.  A sample of one-star and five-star comments was taken from the corpus of reviews to train the SVM.
 
 The advantage of the SVM approach is that it potentially handles domain-specific factors better, but it is also potentially non-extensible to comments of applications outside of the training set.  However, in this project, comments for the training set were taken from all applications, and the purpose of performing semantic analysis was primarily to classify the sentiments of the more neutrally-rated comments (2-4 stars).
 
