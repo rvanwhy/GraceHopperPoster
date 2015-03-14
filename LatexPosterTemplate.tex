@@ -49,7 +49,7 @@
 
 \begin{document}
 
-\title{}
+\title{My Beautiful Dark Twisted Title}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -157,23 +157,23 @@ Dr. Jun Zheng\\
 \maketitle
 
 \section{Introduction}
-The current rating system for applications is antiquated. As more people adopt smartphones as their choice of mobile technology, it becomes increasingly
-difficult for users to sift through reviews in order to determine how other users feel about a mobile application. In addition, the 5-star rating systems used in many modern markets are too coarse to describe accurate sentiment. Our goal is to develop a system that uses existing mobile application data in order to provide users with a better understanding of the reception of an app. 
+The current rating system for mobile applications is antiquated. As more people adopt smartphones as their choice of mobile technology, it becomes increasingly
+difficult for users to sift through reviews in order to determine how other users feel about a mobile application. In addition, the 5-star rating systems used in many modern markets are too coarse to describe accurate sentiment. Our goal is to develop a system that uses existing mobile application data in order to provide users with a better understanding of the reception of an app.
 
 \section{Background and Related Work}
-
 In order to perform sentiment analysis, two approaches were taken: using SentiWordNet scores, and a support vector machine trained with star ratings.
 
 Support Vector Machine (SVM) use in sentiment analysis has proven to be an effective approach to sentiment analysis, in comparison with other machine learning techniques \cite{Pang02thumbsup}.  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech \cite{Miller}.  To normalize the input, term frequency-inverse document frequency (tf-idf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposistion, can be used \cite{Deerwester90indexingby}.  This follows a simiar approach as \cite{Mullen04sentimentanalysis}
 
 SentiWordNet is a dataset that assigns a sentiment score to members of WordNet.  Sentiment scores were generated using the structure of WordNet as well as the Princeton WordNet Gloss Corpus \cite{Baccianella10sentiwordnet}.
 
+The inspiration for using Natural Language Processing for sentiment analyis came from \cite{Pandita:2013:WTA:2534766.2534812}. The group found the approach interesting and worth exploring as an avenue of sentiment analysis.
 %Describe specialized and relevant related background necessary to appreciate the work.  Include references to the literature where appropriate, and briefly explain where your work departs from that done by others.  Reference lists do not count towards the limit on the length of the abstract.
 %This is an example of a citation~\cite{Lamport:LaTeX}.
 
 \section{Approach and Uniqueness}
-%Describe your approach in attacking the problem and how your approach is novel.  Your hypothesis may be here.
-
+\subsection{Data Collection}
+Over 500 applications were collected from the Google Play Store. In the first phase of data collection, online lists of Top 100 Free and Paid apps were scraped and application data was collected. From there, we were able to create a list of developers from the applications already collected. In phase two, we iterated through the list of developers, collecting every application that the developers had written. The results of phases 1 and 2 were combined to form the final data set  
 \subsection{Sentiment Analysis}
 One implemented sentiment analysis approach involved using SentiWordNet.  Part of speech tagging was performed on each review. The sum of SentiWordNet scores for adverbs, verbs, and adjectives was taken to determine whether the review was positive, negative, or neutral overall.  Each review was assigned a sentiment score of 1, -1, or 0 (positive, negative, or neutral), and each app received a sentiment score which was calculated by the proportion of positive to negative reviews.
 
@@ -185,21 +185,21 @@ The advantage of the SVM approach is that it potentially handles domain-specific
 \subsection{Application Metric Comparison}
 Several metrics dealing with application quality are directly available from Google Play.  This includes approximate number of downloads, average 1-5 star rating, and whether the developer is a Top Developer.  In order to determine which metrics are useful in a rating system, these different metrics are compared across the top-downloaded applications, and we determine if there is any correlation.
 
-\section{Results and Application}
+\section{Results and Application}\label{results}
 There are many potential applications for the calculated sentiment score and other available metrics. One particularly interesting application is developer rating: using the aggregate sentiment scores of the applications created by a developer, we can generate a generalized ``reputation'' score that will attempt to measure the reliability of the developer.
 
- This reputation score will provide much needed information about developer reliability which can be a dramatic improvement over the existing information. To elaborate, the Google Play store designates certain developers as ``Top Developers'' which is indicated via badges. However, being a ``Top Developer'' does not indicate that the developer has written a large number of apps or even that the apps are of good quality.
-%\pagebreak
-\begin{figure}[!h]
-\centering
-\epsfig{file=piggy.png,width=0.5\textwidth}
-\caption{An example of a mediocre app from a Top Developer.}
-\label{fig:myfig}
-\end{figure} 
+ This reputation score will provide much needed information about developer reliability which can be a dramatic improvement over the existing information. To elaborate, the Google Play store designates certain developers as ``Top Developers'' which is indicated via badges. However, being a ``Top Developer'' does not indicate that the developer has written a large number of apps or even that the apps are of good quality. The generalized reputation score will provide users with a more precise measurement of developer reliabilty
+
+%\begin{figure}[!h]
+%\centering
+%\epsfig{file=piggy.png,width=0.5\textwidth}
+%\caption{An example of a mediocre app from a Top Developer.}
+%\label{fig:myfig}
+%\end{figure} 
 
 \subsection{Results}
 %Provide an overview of results.  Use tables or figures as appropriate.  Place Tables/Figures/Images in text as close to the reference as possible, typically at the top of a column (see Figure~\ref{fig:myfig}).
-For the sentiment analysis score, the SentiWordNet technique correlates with overall app rating more than the SVM technique does.  For predicting the sentiment of one- and five-star comments, the SVM technique is more accurate.
+For the sentiment analysis score, the SentiWordNet technique correlates with overall app rating more than the SVM technique does.  For predicting the sentiment of one-star and five-star comments, the SVM technique is more accurate.
 
 \begin{figure}[!h]
 \centering
@@ -225,6 +225,15 @@ SVM & 0.735 \\ \hline
 SentiWordNet & 0.709 \\ \hline
 \end{tabular}
 \end{table}
+
+In addition to the above single application analysis. We explored the application listed in \ref{results} by comparing the average SentiWordNet score
+of top developers to other developers. Figure \ref{fig:myfig3} shows the results of the comparison.
+\begin{figure}[!h]
+\centering
+\epsfig{file=avg.png,width=0.5\textwidth}
+\caption{SentiWordNet Sentiment Score vs Number of Apps for Top Developers and Other Developers}
+\label{fig:myfig3}
+\end{figure}
 
 \subsection{Contributions}
 This work contributes to the study of reputation systems by taking a critical look at the quality of various metrics.
