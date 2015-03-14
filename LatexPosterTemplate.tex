@@ -75,7 +75,7 @@
 % without further effort on your part as the last section in
 % the body of your article BEFORE References or any Appendices.
 
-\numberofauthors{2} %  in this sample file, there are a *total*
+\numberofauthors{3} %  in this sample file, there are a *total*
 % of EIGHT authors. SIX appear on the 'first-page' (for formatting
 % reasons) and the remaining two appear in the \additionalauthors section.
 %
@@ -113,6 +113,7 @@ Dr. Jun Zheng\\
        \affaddr{New Mexico Institute of Mining and Technology}\\
        \affaddr{801 Leroy Place}\\
        \affaddr{Socorro, New Mexico, 87801}\\
+       \affaddr{1-(575)-835-5434}
        \email{zheng@cs.nmt.edu}
 % 3rd. author
 %\alignauthor Lars Th{\o}rv{\"a}ld\titlenote{This author is the
@@ -180,11 +181,15 @@ Results were compared to another approach to sentiment analysis: using a support
 
 The advantage of the SVM approach is that it potentially handles domain-specific factors better, but it is also potentially non-extensible to comments of applications outside of the training set.  However, in this project, comments for the training set were taken from all applications, and the purpose of performing semantic analysis was primarily to classify the sentiments of the more neutrally-rate comments (2-4 stars).
 
+
+\subsection{Application Metric Comparison}
+Several metrics dealing with application quality are directly available from Google Play.  This includes approximate number of downloads, average 1-5 star rating, and whether the developer is a Top Developer.  In order to determine which metrics are useful in a rating system, these different metrics are compared across the top-downloaded applications, and we determine if there is any correlation.
+
 \section{Results and Application}
-There are many potential applications for this calculated sentiment score. One particularly interesting applicaton is developer rating: using the aggregate sentiment scores of the applications created by a developer, we can generate a generalized ``reputation'' score that will attempt to measure the reliability of the developer.
+There are many potential applications for the calculated sentiment score and other available metrics. One particularly interesting application is developer rating: using the aggregate sentiment scores of the applications created by a developer, we can generate a generalized ``reputation'' score that will attempt to measure the reliability of the developer.
 
  This reputation score will provide much needed information about developer reliability which can be a dramatic improvement over the existing information. To elaborate, the Google Play store designates certain developers as ``Top Developers'' which is indicated via badges. However, being a ``Top Developer'' does not indicate that the developer has written a large number of apps or even that the apps are of good quality.
-\pagebreak
+%\pagebreak
 \begin{figure}[!h]
 \centering
 \epsfig{file=piggy.png,width=0.5\textwidth}
@@ -194,25 +199,39 @@ There are many potential applications for this calculated sentiment score. One p
 
 \subsection{Results}
 %Provide an overview of results.  Use tables or figures as appropriate.  Place Tables/Figures/Images in text as close to the reference as possible, typically at the top of a column (see Figure~\ref{fig:myfig}).
+For the sentiment analysis score, the SentiWordNet technique correlates with overall app rating more than the SVM technique does.  For predicting the sentiment of one- and five-star comments, the SVM technique is more accurate.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.4]{svm.png}
-%\epsfig{file=svm}
+\epsfig{file=svm.png,width=0.5\textwidth}
 \caption{SVM sentiment scores vs. average star ratings}
 \label{fig:myfig1}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.4]{swn.png}
-%\epsfig{file=swn}
+\epsfig{file=swn.png,width=0.5\textwidth}
 \caption{SentiWordNet sentiment scores vs. average star ratings}
 \label{fig:myfig2}
 \end{figure}
 
+\begin{table}[!h]
+\centering
+\caption{Accuracy of 1 and 5 star sentiment predictions}
+\begin{tabular}{|c|c|}
+\hline
+& \textbf{Accuracy} \\ \hline
+SVM & 0.735 \\ \hline
+SentiWordNet & 0.709 \\ \hline
+\end{tabular}
+\end{table}
 
 \subsection{Contributions}
+This work contributes to the study of reputation systems by taking a critical look at the quality of various metrics.
+\begin{itemize}
+\item{We have compared existing sentiment analysis techniques, and evaluated their effectiveness for predicting the aggregate sentiment of an application from multiple reviews.}
+\item{We have investigated corrrelations between multiple metrics that determine the quality of an application, which can be used to determine the overall quality of an application of an application developer.}
+\end{itemize}
 
 % The following two commands are all you need in the
 % initial runs of your .tex file to
