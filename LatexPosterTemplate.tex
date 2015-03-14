@@ -95,7 +95,7 @@
 Theresa Guinard\\
        \affaddr{New Mexico Institute of Mining and Technology}\\
        \affaddr{801 Leroy Place}\\
-       \affaddr{Socorro, New Mexico}\
+       \affaddr{Socorro, New Mexico}\\
        \affaddr{1-(575)-835-5434}
        \email{tguinard@cs.nmt.edu}
 % 2nd. author
@@ -161,11 +161,11 @@ difficult for users to sift through reviews in order to determine how other user
 
 \section{Background and Related Work}
 
-In order to perform sentiment analysis, two approaches were taken: using SentiWordNet scores and SVM machine learning based on ratings.
+In order to perform sentiment analysis, two approaches were taken: using SentiWordNet scores, and a support vector machine trained with star ratings.
 
-SVM use in sentiment analysis has proven to be more effective than other forms of machine learning [citation needed].  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech.  To normalize the input, term frequency--inverse document frequency (tf-idf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposistion, can be used.
+Support Vector Machine (SVM) use in sentiment analysis has proven to be an effective approach to sentiment analysis, in comparison with other machine learning techniques \cite{Pang02thumbsup}.  When preprocessing input for an SVM, it is helpful to use WordNet lemmas.  WordNet is a lexical resource that groups English words into synonym sets, and words are tagged by part of speech \cite{Miller}.  To normalize the input, term frequency-inverse document frequency (tf-idf) can be used.  To reduce dimensionality, latent semantic analysis (LSA), which uses singular value decomposistion, can be used \cite{Deerwester90indexingby}.  This follows a simiar approach as \cite{Mullen04sentimentanalysis}
 
-SentiWordNet is a dataset that assigns a sentiment score to members of WordNet.  Sentiment scores were generated using the structure of WordNet as well as the Princeton WordNet Gloss Corpus.
+SentiWordNet is a dataset that assigns a sentiment score to members of WordNet.  Sentiment scores were generated using the structure of WordNet as well as the Princeton WordNet Gloss Corpus \cite{Baccianella10sentiwordnet}.
 
 %Describe specialized and relevant related background necessary to appreciate the work.  Include references to the literature where appropriate, and briefly explain where your work departs from that done by others.  Reference lists do not count towards the limit on the length of the abstract.
 %This is an example of a citation~\cite{Lamport:LaTeX}.
@@ -178,7 +178,7 @@ One implemented sentiment analysis approach involved using SentiWordNet.  Part o
 
 Results were compared to another approach to sentiment analysis: using a support vector machine (SVM) trained using the ratings of a subset of the comments.  To transform the reviews into SVM input, the adjectives, adverbs, and verbs were considered (these were determined using part of speech tagging).  These words were lemmatized using WordNet, the comments were normalized via tf-idf, and to reduce the dimensionality of input, LSA was used.  A sample of one-star and five-star comments was taken from the corpus of reviews to train the SVM.
 
-The advantage of the SVM approach is that it potentially handles domain-specific factors better, but it is also potentially non-extensible to applications outside of the training set.  However, in this project, comments for the training set were taken from all applications, and the purpose of performing semantic analysis was primarily to classify the sentiments of the more neutrally-rate comments (2-4 stars).
+The advantage of the SVM approach is that it potentially handles domain-specific factors better, but it is also potentially non-extensible to comments of applications outside of the training set.  However, in this project, comments for the training set were taken from all applications, and the purpose of performing semantic analysis was primarily to classify the sentiments of the more neutrally-rate comments (2-4 stars).
 
 \section{Results and Application}
 There are many potential applications for this calculated sentiment score. One particularly interesting applicaton is developer rating: using the aggregate sentiment scores of the applications created by a developer, we can generate a generalized ``reputation'' score that will attempt to measure the reliability of the developer.
